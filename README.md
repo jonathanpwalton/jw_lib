@@ -10,7 +10,7 @@ MIT-Licensed single-header libraries for C++ a la [stb](https://github.com/nothi
     </tr>
     <tr>
       <td><a href="./jw_math.hpp">jw_math</a></td>
-      <td>Linear algebra library for graphics programming</td>
+      <td>Linear algebra library for graphics programming in the style of GLSL with an object-oriented paradigm</td>
     </tr>
   </table>
 </center>
