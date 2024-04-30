@@ -54,6 +54,13 @@ namespace jw
     vec2(f32 s) : x(s), y(s) {}
     vec2(f32 x, f32 y) : x(x), y(y) {}
 
+    void print(bool print_type = true, FILE* output = stdout) const
+    {
+      if (print_type)
+        fprintf(output, "vec2\n");
+      fprintf(output, "--          --\n| %.4e |\n| %.4e |\n--          --\n", x, y);
+    }
+
     f32 dot(const vec2 &b) const
     {
       return x * b.x + y * b.y;
@@ -107,7 +114,7 @@ namespace jw
       return vec2(x + b.x, y + b.y);
     }
 
-    vec2 operator-(const vec2 &b)
+    vec2 operator-(const vec2 &b) const
     {
       return vec2(x - b.x, y - b.y);
     }
@@ -157,6 +164,13 @@ namespace jw
     vec3(f32 s) : x(s), y(s), z(s) {}
     vec3(f32 x, f32 y, f32 z) : x(x), y(y), z(z) {}
     vec3(vec2 v, f32 z = 0.0F) : x(v.x), y(v.y), z(z) {}
+
+    void print(bool print_type = true, FILE* output = stdout) const
+    {
+      if (print_type)
+        fprintf(output, "vec3\n");
+      fprintf(output, "--          --\n| %.4e |\n| %.4e |\n| %.4e |\n--          --\n", x, y, z);
+    }
 
     f32 dot(const vec3 &b) const
     {
@@ -217,7 +231,7 @@ namespace jw
       return vec3(x + b.x, y + b.y, z + b.z);
     }
 
-    vec3 operator-(const vec3 &b)
+    vec3 operator-(const vec3 &b) const
     {
       return vec3(x - b.x, y - b.y, y - b.y);
     }
@@ -271,6 +285,13 @@ namespace jw
     vec4(f32 s) : x(s), y(s), z(s), w(s) {}
     vec4(f32 x, f32 y, f32 z, f32 w) : x(x), y(y), z(z), w(w) {}
     vec4(vec3 v, f32 w = 0.0F) : x(v.x), y(v.y), z(v.z), w(w) {}
+
+    void print(bool print_type = true, FILE* output = stdout) const
+    {
+      if (print_type)
+        fprintf(output, "vec4\n");
+      fprintf(output, "--          --\n| %.4e |\n| %.4e |\n| %.4e |\n| %.4e |\n--          --\n", x, y, z, w);
+    }
 
     f32 dot(const vec4 &b) const
     {
@@ -327,7 +348,7 @@ namespace jw
       return vec4(x + b.x, y + b.y, z + b.z, w + b.w);
     }
 
-    vec4 operator-(const vec4 &b)
+    vec4 operator-(const vec4 &b) const
     {
       return vec4(x - b.x, y - b.y, y - b.y, w - b.w);
     }
@@ -416,12 +437,17 @@ namespace jw
       m33 = 1;
     }
 
-    void print() const
+    void print(bool print_type = true, FILE* output = stdout) const
     {
-      printf("%.2f %.2f %.2f %.2f\n", m00, m10, m20, m30);
-      printf("%.2f %.2f %.2f %.2f\n", m01, m11, m21, m31);
-      printf("%.2f %.2f %.2f %.2f\n", m02, m12, m22, m32);
-      printf("%.2f %.2f %.2f %.2f\n", m03, m13, m23, m33);
+      if (print_type)
+        fprintf(output, "mat4\n");
+
+      fprintf(output, "--                                               --\n");
+      fprintf(output, "| %+.4e %+.4e %+.4e %+.4e |\n", m00, m10, m20, m30);
+      fprintf(output, "| %+.4e %+.4e %+.4e %+.4e |\n", m01, m11, m21, m31);
+      fprintf(output, "| %+.4e %+.4e %+.4e %+.4e |\n", m02, m12, m22, m32);
+      fprintf(output, "| %+.4e %+.4e %+.4e %+.4e |\n", m03, m13, m23, m33);
+      fprintf(output, "--                                               --\n");
     }
 
     f32 *data()
