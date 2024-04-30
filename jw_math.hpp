@@ -53,6 +53,85 @@ namespace jw
     f32 x, y;
     vec2(f32 s) : x(s), y(s) {}
     vec2(f32 x, f32 y) : x(x), y(y) {}
+
+    f32 dot(const vec2& b) const {
+      return x * b.x + y * b.y;
+    }
+
+    f32 length_squared() const {
+      return dot(*this);
+    }
+
+    f32 length() const {
+      return sqrtf(length_squared());
+    }
+
+    vec2& normalize() {
+      f32 l = length();
+      x /= l;
+      y /= l;
+      return *this;
+    }
+
+    vec2 normalized() {
+      return vec2(*this).normalize();
+    }
+
+    vec2 operator+(f32 s) const {
+      return vec2(x + s, y + s);
+    }
+
+    vec2 operator-(f32 s) const {
+      return vec2(x - s, y - s);
+    }
+
+    vec2 operator*(f32 s) const {
+      return vec2(x * s, y * s);
+    }
+
+    vec2 operator/(f32 s) const {
+      return vec2(x / s, y / s);
+    }
+
+    vec2 operator+(const vec2& b) const {
+      return vec2(x + b.x, y + b.y);
+    }
+    
+    vec2 operator-(const vec2& b) {
+      return vec2(x - b.x, y - b.y);
+    }
+
+    vec2 &operator+=(f32 s) {
+      x += s;
+      y += s;
+      return *this;
+    }
+
+    vec2 &operator-=(f32 s) {
+      x -= s;
+      y -= s;
+      return *this;
+    }
+
+    vec2 &operator*=(f32 s) {
+      x *= s;
+      y *= s;
+      return *this;
+    }
+
+    vec2 &operator/=(f32 s) {
+      x /= s;
+      y /= s;
+      return *this;
+    }
+
+    vec2 &operator+=(const vec2& b) {
+      return *this = *this + b;
+    }
+    
+    vec2 &operator-=(const vec2& b) {
+      return *this = *this - b;
+    }
   };
 
   struct vec3
@@ -61,6 +140,94 @@ namespace jw
     vec3(f32 s) : x(s), y(s), z(s) {}
     vec3(f32 x, f32 y, f32 z) : x(x), y(y), z(z) {}
     vec3(vec2 v, f32 z = 0.0F) : x(v.x), y(v.y), z(z) {}
+
+    f32 dot(const vec3& b) const {
+      return x * b.x + y * b.y + z * b.z;
+    }
+
+    f32 length_squared() const {
+      return dot(*this);
+    }
+
+    f32 length() const {
+      return sqrtf(length_squared());
+    }
+
+    vec3& normalize() {
+      f32 l = length();
+      x /= l;
+      y /= l;
+      z /= l;
+      return *this;
+    }
+
+    vec3 normalized() {
+      return vec3(*this).normalize();
+    }
+
+    vec3 cross(const vec3& b) {
+      return vec3(y * b.z - z * b.y, z * b.x - x * b.z, x * b.y - y * b.x);
+    }
+
+    vec3 operator+(f32 s) const {
+      return vec3(x + s, y + s, z + s);
+    }
+
+    vec3 operator-(f32 s) const {
+      return vec3(x - s, y - s, z - s);
+    }
+
+    vec3 operator*(f32 s) const {
+      return vec3(x * s, y * s, z * s);
+    }
+
+    vec3 operator/(f32 s) const {
+      return vec3(x / s, y / s, z / s);
+    }
+
+    vec3 operator+(const vec3& b) const {
+      return vec3(x + b.x, y + b.y, z + b.z);
+    }
+    
+    vec3 operator-(const vec3& b) {
+      return vec3(x - b.x, y - b.y, y - b.y);
+    }
+
+    vec3 &operator+=(f32 s) {
+      x += s;
+      y += s;
+      z += s;
+      return *this;
+    }
+
+    vec3 &operator-=(f32 s) {
+      x -= s;
+      y -= s;
+      z-= s;
+      return *this;
+    }
+
+    vec3 &operator*=(f32 s) {
+      x *= s;
+      y *= s;
+      z *= s;
+      return *this;
+    }
+
+    vec3 &operator/=(f32 s) {
+      x /= s;
+      y /= s;
+      z /= s;
+      return *this;
+    }
+
+    vec3 &operator+=(const vec3& b) {
+      return *this = *this + b;
+    }
+    
+    vec3 &operator-=(const vec3& b) {
+      return *this = *this - b;
+    }
   };
 
   struct vec4
@@ -69,6 +236,95 @@ namespace jw
     vec4(f32 s) : x(s), y(s), z(s), w(s) {}
     vec4(f32 x, f32 y, f32 z, f32 w) : x(x), y(y), z(z), w(w) {}
     vec4(vec3 v, f32 w = 0.0F) : x(v.x), y(v.y), z(v.z), w(w) {}
+
+    f32 dot(const vec4& b) const {
+      return x * b.x + y * b.y + z * b.z + w * b.w;
+    }
+
+    f32 length_squared() const {
+      return dot(*this);
+    }
+
+    f32 length() const {
+      return sqrtf(length_squared());
+    }
+
+    vec4& normalize() {
+      f32 l = length();
+      x /= l;
+      y /= l;
+      z /= l;
+      w /= l;
+      return *this;
+    }
+
+    vec4 normalized() {
+      return vec4(*this).normalize();
+    }
+
+    vec4 operator+(f32 s) const {
+      return vec4(x + s, y + s, z + s, w + s);
+    }
+
+    vec4 operator-(f32 s) const {
+      return vec4(x - s, y - s, z - s, w - s);
+    }
+
+    vec4 operator*(f32 s) const {
+      return vec4(x * s, y * s, z * s, w * s);
+    }
+
+    vec4 operator/(f32 s) const {
+      return vec4(x / s, y / s, z / s, w / s);
+    }
+
+    vec4 operator+(const vec4& b) const {
+      return vec4(x + b.x, y + b.y, z + b.z, w + b.w);
+    }
+    
+    vec4 operator-(const vec4& b) {
+      return vec4(x - b.x, y - b.y, y - b.y, w - b.w);
+    }
+
+    vec4 &operator+=(f32 s) {
+      x += s;
+      y += s;
+      z += s;
+      w += s;
+      return *this;
+    }
+
+    vec4 &operator-=(f32 s) {
+      x -= s;
+      y -= s;
+      z -= s;
+      w -= s;
+      return *this;
+    }
+
+    vec4 &operator*=(f32 s) {
+      x *= s;
+      y *= s;
+      z *= s;
+      w *= s;
+      return *this;
+    }
+
+    vec4 &operator/=(f32 s) {
+      x /= s;
+      y /= s;
+      z /= s;
+      w /= s;
+      return *this;
+    }
+
+    vec4 &operator+=(const vec4& b) {
+      return *this = *this + b;
+    }
+    
+    vec4 &operator-=(const vec4& b) {
+      return *this = *this - b;
+    }
   };
 
   struct quat
@@ -116,6 +372,11 @@ namespace jw
       printf("%.2f %.2f %.2f %.2f\n", m03, m13, m23, m33);
     }
 
+    f32 *data()
+    {
+      return &m00;
+    }
+
     const f32 *data() const
     {
       return &m00;
@@ -130,7 +391,7 @@ namespace jw
       return *this = *this * t;
     }
 
-    mat4 translated(const vec3 &xyz)
+    mat4 translated(const vec3 &xyz) const
     {
       mat4 r = *this;
       return r.translate(xyz);
@@ -145,7 +406,7 @@ namespace jw
       return *this = *this * t;
     }
 
-    mat4 scaled(const vec3 &s)
+    mat4 scaled(const vec3 &s) const
     {
       mat4 r = *this;
       return r.scale(s);
@@ -157,7 +418,7 @@ namespace jw
       return *this = *this * t;
     }
 
-    mat4 rotated(const vec3 &axis, f32 angle)
+    mat4 rotated(const vec3 &axis, f32 angle) const
     {
       mat4 r = *this;
       return r.rotate(axis, angle);
@@ -168,7 +429,7 @@ namespace jw
       return *this = *this * mat4(q);
     }
 
-    mat4 rotated(const quat &q)
+    mat4 rotated(const quat &q) const
     {
       mat4 r = *this;
       return r.rotate(q);
@@ -199,6 +460,16 @@ namespace jw
       r.m33 = m03 * b.m30 + m13 * b.m31 + m23 * b.m32 + m33 * b.m33;
 
       return r;
+    }
+    
+    vec4 operator*(const vec4& b)
+    {
+      return vec4(
+        m00 * b.x + m10 * b.y + m20 * b.z + m30 * b.w,
+        m01 * b.x + m11 * b.y + m21 * b.y + m31 * b.w,
+        m02 * b.x + m12 * b.y + m22 * b.z + m32 * b.w,
+        m03 * b.x + m13 * b.y + m23 * b.z + m33 * b.w
+      );
     }
 
     mat4 &operator*=(const mat4 &b)
